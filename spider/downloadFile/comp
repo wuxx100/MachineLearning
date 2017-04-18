@@ -1,0 +1,22 @@
+#chmod 755 ...
+
+for dir in `ls .`
+do
+	if [ -d $dir ]
+	then
+		echo $dir
+		cd $dir
+		for subdir in `ls .`
+		do
+			if [ -d $subdir ]
+			then 
+				echo $subdir
+				cd $subdir
+				mv * Merged.ems.Z
+				uncompress Merged.ems.Z
+				cd ..
+			fi
+		done
+		cd ..
+	fi
+done
