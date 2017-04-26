@@ -51,7 +51,7 @@ if __name__ == '__main__':
             lin=model.get_params('linear')['linear']
 
 
-            y_hat=model.predict(x_hat.reshape(-1,1))
+            y_hat=model.predict(x_hat.reshape(-1,1))        #x按数列排，y按行排
             s_train=model.score(x,y)
 
             label=u'%d阶,$R^2$=%.3f' %(d,s_train)
