@@ -17,7 +17,7 @@ if __name__ == '__main__':
     np.random.seed(0)
     N=400
     data,y = ds.make_blobs(N,2,centers=((-1,1),(1,1),(1,-1),(-1,-1)),cluster_std=(0.5,0.2,0.2,0.4))
-    data=np.array(data)
+    # data=np.array(data)
     noiseNum=int(0.1*N)
     noise_01=np.random.rand(noiseNum,2)        ##行列，(0,1)之间
 

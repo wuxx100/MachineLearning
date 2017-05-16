@@ -8,6 +8,7 @@ from sklearn.metrics import euclidean_distances
 from sklearn.cluster import spectral_clustering
 from sklearn.cluster import  SpectralClustering
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 if __name__ == '__main__':
     np.random.seed(0)
@@ -34,16 +35,28 @@ if __name__ == '__main__':
     circle4 = np.vstack((5 * np.cos(t), 5 * np.sin(t))).T
     data2=np.vstack((circle1,circle2,circle3,circle4))
 
-    for i, data in ((data1,data2)):
+
+
+    for i, data in enumerate((data1,data2)):
+    # for i in range(1):
+    #     data=data2
         clustersNum=4
+        cm = mpl.colors.ListedColormap(['r', 'g', 'b', 'm', 'c'])
+
         euclideanDis2=euclidean_distances(data,squared=True)
         #注意，这里使用的是spectral_clustering，不是SpectralClustering，所以就是个函数，不是个类
 
-        for s in enumerate(np.logspace(-2,0,6)):
+        for i,s in enumerate(np.logspace(-2,2,30)):
             print s
             affinity=np.exp(-euclideanDis2/(s**2)) + 1e-6   ##谱聚类的连通性，使用w_ij=exp(-|...|/2s^2)，应该加了正则项
             y_hat=spectral_clustering(affinity=affinity,n_clusters=clustersNum,assign_labels='kmeans')
 
+            # print y_hat
             plt.figure()
-            plt.scatter(data)
+            plt.scatter(data[:,0],data[:,1],c=y_hat,cmap=cm)
+            plt.grid(True)
+            plt.show()
 
+
+## 对于data1,s=1.0表现最好
+## 对于data2,s=0.33表现最好

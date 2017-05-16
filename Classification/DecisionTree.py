@@ -61,6 +61,9 @@ if __name__ == '__main__':
 
     plt.figure()
     plt.pcolormesh(x1,x2,y_show_hat,cmap=cm_light)
+
+    print 'y=',x[:,0]
+
     plt.scatter(x[:,0],x[:,1],c=y.ravel(),s=40,cmap=cm_dark)
     plt.xlabel(iris_feature[0], fontsize=15)
     plt.ylabel(iris_feature[1], fontsize=15)

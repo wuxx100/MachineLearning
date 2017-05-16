@@ -11,11 +11,12 @@ if __name__ == '__main__':
     path='iris.data'
     data=pd.read_csv(path, header=None)
     x,y=data[range(4)],data[4]
+
     y=pd.Categorical(y).codes
     x=x[[0,1]]
     x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.7,random_state=1)
 
-    SVMModel=svm.SVC(C=0.1, kernel='linear', decision_function_shape= 'ovr')    #!!!!!!!!!!!!!!!!!!
+    SVMModel=svm.SVC(C=0.1, kernel='linear', decision_function_shape= 'ovr')    #!!!!!!!!!!!!!!!!!!(one over rest)
 
     SVMModel.fit(x_train,y_train.ravel())
 
@@ -32,6 +33,7 @@ if __name__ == '__main__':
     t2=np.linspace(x2_min,x2_max,x2_num)
     x1,x2=np.meshgrid(t1,t2)
     x_show=np.stack((x1.flat,x2.flat),axis=1)
+    # print x_show
     y_show_hat=SVMModel.predict(x_show)
     y_show_hat=y_show_hat.reshape(x1.shape)
 
