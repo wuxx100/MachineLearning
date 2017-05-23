@@ -13,7 +13,7 @@ import numpy as np
 import pandas as pd
 
 if __name__ == '__main__':
-    prnNum=15
+    prnNum=14
     path = 'findIODC/prn'+str(prnNum)+'.csv'
     data=pd.read_csv(path,header=None)
     ##这里用m0(13),deltaN(12),cis(21),toe(18),cic(19)  都试试
@@ -53,9 +53,9 @@ if __name__ == '__main__':
             plt.scatter(feature1[curIdx & core_indices][:, 0], feature1[curIdx & core_indices][:, 1], s=sizeForGroup*10, c=color, marker='o',
                         edgecolors='k')
             print 'for group', k
-            print featurePrime[curIdx,33]
-            # for i in np.unique(featurePrime[curIdx,33]):
-            #     data[data[33]==i].to_csv('findIODC/cleanedData/prn'+str(prnNum)+'_IODC'+str(int(i))+'.csv')
+            print np.unique(featurePrime[curIdx,33])
+            for i in np.unique(featurePrime[curIdx,33]):
+                data[data[33]==i].to_csv('findIODC/cleanedData/prn_'+str(prnNum)+'_IODC_'+str(int(i))+'_.csv',header=None,index=True)
 
 
         plt.grid(True)

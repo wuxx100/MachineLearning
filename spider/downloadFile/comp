@@ -1,3 +1,7 @@
+work="/Users/wuxuexin/Desktop/刷题/MachineLearning/spider/downloadFile"
+cd work
+
+
 #chmod 755 ...
 
 for dir in `ls .`
