@@ -25,6 +25,7 @@ for day=4:300
                     dayForMonth=data(4);
                     monthForYear=data(3);
                     dayForYear=datenum(nowyear,monthForYear,dayForMonth)-datenum(nowyear,1,1)+1;
+                    if (abs(dayForYear-day)<2 | (day==1 && (dayForYear==365 | dayForYear==366)) | (dayForYear==1 && (day==365 | day==366)))
                     fileName=[writeFolder,int2str(nowyear),'/',int2str(dayForYear),'/','findIODC/','prn',num2str(prnNum),'.csv'];
                     dlmwrite(fileName,data,'delimiter',',','-append');
                 end

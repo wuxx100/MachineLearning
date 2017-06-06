@@ -61,11 +61,12 @@ if __name__ == '__main__':
                     # plt.scatter(feature1[curIdx & core_indices][:, 0], feature1[curIdx & core_indices][:, 1], s=sizeForGroup*10, c=color, marker='o',
                     #              edgecolors='k')
                     print 'for group', k
-                    TTOM=min(np.unique(featurePrime[curIdx, 35]))
+                    print(featurePrime[curIdx, 35])
+                    TTOM=min(featurePrime[curIdx, 35])
                     URA=np.unique(featurePrime[curIdx, 31])
                     print 'URA=',URA,'TTOM=',TTOM
 
-                    if TTOM<minTTOM:
+                    if TTOM<minTTOM and TTOM != 0:
                         minTTOM=TTOM
                         kForMinTTOM=k
                         lineNum=min(featurePrime[curIdx,0])
@@ -76,4 +77,4 @@ if __name__ == '__main__':
                 resultData[range(1, 39)].to_csv('navData/'+str(year)+'/'+str(day)+'/findIODC/Result/myNavMes.csv',mode='a',header=None,index=None)
                 print
                 # plt.grid(True)
-            # plt.show()
+            plt.show()
